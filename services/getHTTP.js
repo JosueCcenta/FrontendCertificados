@@ -8,7 +8,7 @@ export const methodGet = (url) => {
     useEffect(() => {
         axios.get(url)
             .then((response) => {
-                setData(JSON.stringify(response.data.alumnos,null,'\t'));
+                setData(response.data.alumnos);
             })
             .catch((err) => {
                 setError(err);
@@ -17,6 +17,6 @@ export const methodGet = (url) => {
                 setLoading(false);
             });
     }, [url]);
-
+    console.log(data)
     return { data, loading, error };
 };
