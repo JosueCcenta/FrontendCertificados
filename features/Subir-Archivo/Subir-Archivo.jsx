@@ -18,8 +18,9 @@ const BUTTON_TEXT = {
 function SubirArchivo() {
     const [appStatus, setAppStatus] =useState(APP_STATUS.IDLE)
     const [file, setFile] = useState(null)
-    const [Data , setData] = useState(null)
+    const [Data , setData] = useState("")
     const[Count, setCount] = useState(null)
+    const [DataTransform,setDataTransform] = useState("")
     const handleInputChange = (event) => {
         const file = event.target.files[0];
         if(file){
@@ -47,8 +48,9 @@ function SubirArchivo() {
 
             setCount(data.data.length)
 
-            setData(JSON.stringify(data,null,'\t'))
+            setData(JSON.stringify(data.data,null,'\t'))
             toast.success('Archivo Subido Correctamente');
+
         } catch (error) {
             console.error('Error in handleSubmit:', error);
             setAppStatus(APP_STATUS.ERROR);
@@ -56,6 +58,11 @@ function SubirArchivo() {
         }
         
     };
+
+    const tranformData = (json) => {
+        console.log(Data)
+
+    }
     console.log(Data)
     console.log(Count)
 

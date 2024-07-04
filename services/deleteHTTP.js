@@ -1,16 +1,16 @@
 import axios from "axios";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-export const methodPost = (url, data) => {
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
+export const methodDelete = (url) => {
+    const [responseData, setResponseData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         setLoading(true);
-        axios.post(url, data)
+        axios.delete(url)
             .then((response) => {
-                setData(response.data);
+                setResponseData(response.data);
             })
             .catch((err) => {
                 setError(err);
@@ -18,7 +18,7 @@ export const methodPost = (url, data) => {
             .finally(() => {
                 setLoading(false);
             });
-    }, [url, data]);
+    }, [url]);
 
-    return { data, loading, error };
+    return { responseData, loading, error };
 }

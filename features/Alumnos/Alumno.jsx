@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { methodGet } from "../../services/getHTTP";
+import Table from "../Components/table";
+
 const Alumnos = () => {
     const { data, loading, error } = methodGet('http://localhost:3000/alumnos');
     const [searchTerm, setSearchTerm] = useState('');
@@ -7,8 +9,11 @@ const Alumnos = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-
-
+    const deleteAlumno = (id_alumno) => {
+        const { responseData, loading, error }=methodDelete("http://localhost:3000/alumno",id_alumno)
+        console.log("Has borrado al alumno = " + idalumno);
+        console.log(data)
+    };
 
     return (
         <>
@@ -22,15 +27,38 @@ const Alumnos = () => {
                 />
                 <button>Buscar</button>
             </div>
-            <ul>
-                {data.map((alumnos) => {
-                    let { id_alumno, nombres, apellido_p, apellido_m, dni, email, contrasena, id_tipo_usuario } = alumnos;
-                    console.log(nombres)
-                })}
-                
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Nombres</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>DNI</th>
+                        <th>Correo</th>
+                        <th>Tipo usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((alumno) => (
+                        <tr key={alumno.id_alumno}>
+                            <td>{alumno.id_alumno}</td>
+                            <td>{alumno.nombres}</td>
+                            <td>{alumno.apellido_p}</td>
+                            <td>{alumno.apellido_m}</td>
+                            <td>{alumno.dni}</td>
+                            <td>{alumno.email}</td>
+                            <td>{alumno.id_tipo_usuario}</td>
+                            <td>
+                                <button onClick={() => deleteAlumno(alumno.id_alumno)}>Borrar</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </>
     );
 };
 
-export default Alumnos;
+export default Alumnos;
