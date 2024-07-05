@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { methodGet } from "../../services/getHTTP";
-import Table from "../Components/table";
 
 const Alumnos = () => {
     const { data, loading, error } = methodGet('http://localhost:3000/alumnos');
@@ -9,8 +8,9 @@ const Alumnos = () => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
+
     const deleteAlumno = (id_alumno) => {
-        const { responseData, loading, error }=methodDelete("http://localhost:3000/alumno",id_alumno)
+        const { responseData, loading, error } = methodDelete("http://localhost:3000/alumno", id_alumno)
         console.log("Has borrado al alumno = " + idalumno);
         console.log(data)
     };
@@ -61,4 +61,4 @@ const Alumnos = () => {
     );
 };
 
-export default Alumnos;
+export default Alumnos;

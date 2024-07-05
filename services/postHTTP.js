@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 
 export const methodPost = (url, data) => {
-    const [data, setData] = useState(null);
+    const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -10,7 +10,7 @@ export const methodPost = (url, data) => {
         setLoading(true);
         axios.post(url, data)
             .then((response) => {
-                setData(response.data);
+                setResponse(response.data);
             })
             .catch((err) => {
                 setError(err);
@@ -20,5 +20,5 @@ export const methodPost = (url, data) => {
             });
     }, [url, data]);
 
-    return { data, loading, error };
+    return { response, loading, error };
 }
