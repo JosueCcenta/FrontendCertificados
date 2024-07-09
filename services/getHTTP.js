@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
 
-export const methodGet = (url) => {
+export const useMethodGet = (url) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -17,6 +17,5 @@ export const methodGet = (url) => {
                 setLoading(false);
             });
     }, [url]);
-    console.log(data)
     return { data, loading, error };
 };

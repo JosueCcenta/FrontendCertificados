@@ -25,7 +25,9 @@ const SubirArchivo = () => {
     const [file, setFile] = useState(null);
     const [informacion, setInformacion] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [validador, setValidador] = useState(false);
+    const [respuesta, setRespuesta] = useState(null);
     const handleInputChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -49,7 +51,7 @@ const SubirArchivo = () => {
                 return;
             }
             setAppStatus(APP_STATUS.READY_USAGE);
-            setInformacion(data.data);
+            setInformacion(JSON.stringify(data.data, null, '\t'));
             toast.success('Archivo Subido Correctamente');
             setAppStatus(APP_STATUS.READY_SUBMIT_BD);
         } catch (error) {
@@ -61,23 +63,26 @@ const SubirArchivo = () => {
 
     const handleDatabaseSubmit = async () => {
         setAppStatus(APP_STATUS.SUBMIT_BD);
-
+        setValidador(true);
     };
-
 
     useEffect(() => {
         const fetchData = async () => {
+            console.log("antes")
+            const { response,loading, error } = methodPost("http://localhost:3000/alumno/search/","",clave);
+            console.log(appStatus)
             if (appStatus === APP_STATUS.SUBMIT_BD && informacion) {
                 setLoading(true);
                 setError(null);
+
                 try {
-                    const { response, error } = methodPost("http://localhost:3000/alumno", data);
                     if (error) {
                         toast.error('Error haciendo la llamada');
                         setError(error.message);
                         setAppStatus(APP_STATUS.ERROR);
                     } else {
                         toast.success('Subida correcta de datos');
+                        setRespuesta(response);
                         setAppStatus(APP_STATUS.SUBMIT_BD);
                     }
                 } catch (error) {
@@ -90,13 +95,12 @@ const SubirArchivo = () => {
                 }
             }
         };
-
         fetchData();
-    }, [appStatus, informacion]);
+    }, [validador]);
 
     const showButton = appStatus === APP_STATUS.READY_UPLOAD || appStatus === APP_STATUS.UPLOADING;
     const showButtonBd = appStatus === APP_STATUS.READY_SUBMIT_BD;
-    console.log(appStatus)
+    console.log(respuesta)
     return (
         <>
             <Toaster />

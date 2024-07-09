@@ -1,24 +1,20 @@
 import axios from "axios";
-import { useState, useEffect } from 'react';
 
 export const methodPost = (url, data) => {
-    const [response, setResponse] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setLoading(true);
-        axios.post(url, data)
-            .then((response) => {
-                setResponse(response.data);
-            })
-            .catch((err) => {
-                setError(err);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, [url, data]);
+    var response = (null);
+    var error = (null);
+    var loading = (true);
+    axios.post(url+clave)
+        .then((result) => {
+            response = result.data
+            console.log(response)
+        })
+        .catch((err) => {
+            error = err;
+        })
+        .finally(() => {
+            loading = false;
+        });
 
     return { response, loading, error };
 }

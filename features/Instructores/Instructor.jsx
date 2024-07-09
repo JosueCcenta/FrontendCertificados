@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { methodGet } from "../../services/getHTTP"
+import {  useMethodGet } from "../../services/getHTTP"
 
 const Instructores = () => {
     const [instructores, setInstructores] = useState(null);
 
-    const { result, loading, error } = methodGet('http://localhost:3000/instructors');
+    const { result, loading, error } = useMethodGet('http://localhost:3000/instructors');
     
     return (<>
         <form action="" className="flex flex-col">
