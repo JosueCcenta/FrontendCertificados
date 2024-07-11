@@ -5,6 +5,8 @@ import SubirArchivo from '../features/Subir-Archivo/Subir-Archivo';
 import Alumnos from '../features/Alumnos/Alumno';
 import  Instructores  from '../features/Instructores/Instructor';
 import  Table  from '../features/Components/table';
+import Certificados from '../features/Certificados/AlumnosCertificados';
+
 const App = () => {
 
   return (
@@ -15,6 +17,7 @@ const App = () => {
         <Route path='/CSV' element={<SubirArchivo />}></Route>
         <Route path='/instructores' element={<Instructores/>}/>
         <Route path='/tabla' element={<Table/>}></Route>
+        <Route path='/certificado/:data' element={<Certificados/>}></Route>
         <Route path='*' element={<Page404 />} />
       </Routes>
     </>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useMethodGet } from "../../services/getHTTP";
 import { useMethodPostClave } from "../../services/postClaveHTTP";
+import { Link } from 'react-router-dom';
 
 const Alumnos = () => {
     const { data, loading, error } = useMethodGet('http://localhost:3000/alumnos');
     const [searchTerm, setSearchTerm] = useState("");
     const [respuesta, setRespuesta] = useState(null);
+    console.log(data)
 
     const search = async (palabraClave) => {
         setSearchTerm(palabraClave);
@@ -38,6 +40,7 @@ const Alumnos = () => {
                             <td>{alumno.id_tipo_usuario}</td>
                             <td>
                                 <button onClick={() => deleteAlumno(alumno.id_alumno)}>Borrar</button>
+                                <button> <Link to={`/certificado/${encodeURIComponent(JSON.stringify(data))}`}>Certificado</Link></button>
                             </td>
                         </tr>
                     ))}
