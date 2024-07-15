@@ -164,5 +164,3 @@ useEffect(() => {
     fetchData();
 }, [appStatus, informacion]);
 
-
-import React, { useState } from 'react';

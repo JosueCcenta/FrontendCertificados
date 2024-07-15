@@ -1,0 +1,22 @@
+.contenedor {
+    position: relative; /* Establece un contexto relativo */
+    width: 300px; /* Ajusta el ancho según tu necesidad */
+  }
+  
+  .texto-encima {
+    position: absolute; /* Posiciona el texto de forma absoluta dentro del contenedor */
+    top: 50%; /* Ajusta la posición vertical */
+    left: 50%; /* Ajusta la posición horizontal */
+    transform: translate(-50%, -50%); /* Centra el texto respecto al centro del contenedor */
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semi-transparente */
+    color: white; /* Color del texto */
+    padding: 10px; /* Espacio interior */
+    z-index: 1; /* Asegura que el texto esté encima de la imagen */
+  }
+  
+  img {
+    display: block; /* Asegura que la imagen se comporte como bloque */
+    width: 100%; /* Opcional: Ajusta el ancho al 100% */
+    height: auto; /* Opcional: Ajusta la altura automáticamente */
+  }
+  

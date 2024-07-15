@@ -1,26 +1,25 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const  useMethodPostClave = (url, data, clave) => {
-    let response = null;
-    let error = null;
-    let loading = true;
+export const useMethodPostClave = (url) => {
+    const [response, setResponse] = useState(null); 
+    const [error, setError] = useState(null); 
+    const [loading, setLoading] = useState(true);
 
-    const postData = async () => {
-        try {
-            const result = await axios.post(url + clave, data);
-            response = result.data; 
-            console.log(response)
-        } catch (err) {
-            error = err;
-        } finally {
-            loading = false;
-        }
-    };
-    postData();
-   return () => ({
-        response,
-        loading,
-        error
-    });
-}
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const resultado = await axios.post(url);
+                setResponse(resultado.data); 
+            } catch (err) {
+                setError(err); 
+            } finally {
+                setLoading(false); 
+            }
+        };
 
+        fetchData();
+    }, [url]);
+
+    return { response, loading, error };
+};

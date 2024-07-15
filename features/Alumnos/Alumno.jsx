@@ -7,14 +7,12 @@ const Alumnos = () => {
     const { data, loading, error } = useMethodGet('http://localhost:3000/alumnos');
     const [searchTerm, setSearchTerm] = useState("");
     const [respuesta, setRespuesta] = useState(null);
-    console.log(data)
 
     const search = async (palabraClave) => {
         setSearchTerm(palabraClave);
         const { response, loading, error } = await useMethodPostClave("http://localhost:3000/alumno/search/", "", palabraClave);
         setRespuesta(response);
     };
-
     useEffect(() => {
         if (searchTerm !== "") {
             search(searchTerm);
@@ -25,7 +23,6 @@ const Alumnos = () => {
 
 
     const renderTable = () => {
-        console.log(respuesta)
         if (!respuesta) {
             return (
                 <tbody>
@@ -39,8 +36,7 @@ const Alumnos = () => {
                             <td>{alumno.email}</td>
                             <td>{alumno.id_tipo_usuario}</td>
                             <td>
-                                <button onClick={() => deleteAlumno(alumno.id_alumno)}>Borrar</button>
-                                <button> <Link to={`/certificado/${encodeURIComponent(JSON.stringify(data))}`}>Certificado</Link></button>
+                                <button> <Link to={`/certificado/${encodeURIComponent(alumno.id_alumno)}`}>Ver Certificados</Link></button>
                             </td>
                         </tr>
                     ))}

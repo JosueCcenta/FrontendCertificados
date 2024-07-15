@@ -1,51 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { useMethodPostClave } from "../../services/postClaveHTTP";
+import { Toaster, toast } from "sonner";
 
 const Certificados = () => {
     const { data } = useParams();
-    const [alumnos, setAlumnos] = useState([]);
+    const [idAlumno, setIdAlumno] = useState(1);
 
     useEffect(() => {
-        // Decodificar y parsear la cadena JSON recibida
         const decodedData = JSON.parse(decodeURIComponent(data));
-        setAlumnos(decodedData);
+        setIdAlumno(decodedData);
     }, [data]);
 
+    const { response, loading, error } = useMethodPostClave(`http://localhost:3000/certificado/alumno/${idAlumno}`);
+
+
+    if (loading) return <p>Cargando...</p>;
+
+    if (error) {
+        toast.error("Error : " + error.response.data.details[0].msg);
+    }
     return (
-        <>
-            <h1>Certificados</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Nombres</th>
-                        <th>Apellido paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>DNI</th>
-                        <th>Correo</th>
-                        <th>Tipo usuario</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {alumnos.map((alumno) => (
-                        <tr key={alumno.id_alumno}>
-                            <td>{alumno.id_alumno}</td>
-                            <td>{alumno.nombres}</td>
-                            <td>{alumno.apellido_p}</td>
-                            <td>{alumno.apellido_m}</td>
-                            <td>{alumno.dni}</td>
-                            <td>{alumno.email}</td>
-                            <td>{alumno.id_tipo_usuario}</td>
-                            <td>
-                                <button onClick={() => deleteAlumno(alumno.id_alumno)}>Borrar</button>
-                                {/* No necesitas el Link aquí */}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </>
+        <div>
+            <Toaster />
+            {response && (
+                <div>
+                    <pre>{JSON.stringify(response, null, 2)}</pre>
+                </div>
+            )}
+        </div>
     );
 };
 

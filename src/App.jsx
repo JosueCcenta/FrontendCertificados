@@ -6,6 +6,7 @@ import Alumnos from '../features/Alumnos/Alumno';
 import  Instructores  from '../features/Instructores/Instructor';
 import  Table  from '../features/Components/table';
 import Certificados from '../features/Certificados/AlumnosCertificados';
+import  Certificado  from '../features/Certificados/Certificado';
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/instructores' element={<Instructores/>}/>
         <Route path='/tabla' element={<Table/>}></Route>
         <Route path='/certificado/:data' element={<Certificados/>}></Route>
+        <Route path='/certificados' element={<Certificado/>}></Route>
         <Route path='*' element={<Page404 />} />
       </Routes>
     </>
