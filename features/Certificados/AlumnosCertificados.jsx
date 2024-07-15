@@ -6,6 +6,7 @@ import { Toaster, toast } from "sonner";
 const Certificados = () => {
     const { data } = useParams();
     const [idAlumno, setIdAlumno] = useState(1);
+    const [certificados, setCertificados] = useState([]);
 
     useEffect(() => {
         const decodedData = JSON.parse(decodeURIComponent(data));
@@ -14,21 +15,43 @@ const Certificados = () => {
 
     const { response, loading, error } = useMethodPostClave(`http://localhost:3000/certificado/alumno/${idAlumno}`);
 
+    useEffect(() => {
+        if (response && response.certificado) {
+            setCertificados(response.certificado);
+        }
+    }, [response])
+
+    useEffect(() => {
+        if (error) {
+            toast.error("Error: " + error.response.data.details[0].msg);
+        }
+    }, [error]);
 
     if (loading) return <p>Cargando...</p>;
-
-    if (error) {
-        toast.error("Error : " + error.response.data.details[0].msg);
-    }
     return (
-        <div>
+        <>
             <Toaster />
-            {response && (
-                <div>
-                    <pre>{JSON.stringify(response, null, 2)}</pre>
-                </div>
-            )}
-        </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Certificado</th>
+                        <th>Seminario</th>
+                        <th>Instructor</th>
+                        <th>Contenido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {certificados.map(certificado => (
+                        <tr key={certificado.id_certificado}>
+                            <td>{certificado.id_certificado}</td>
+                            <td>{certificado.nombre_seminario}</td>
+                            <td>{`${certificado.nombre_instructor} ${certificado.apellido_p_instructor} ${certificado.apellido_m_instructor}`}</td>
+                            <td>{certificado.descripcion_contenido}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </>
     );
 };
 
