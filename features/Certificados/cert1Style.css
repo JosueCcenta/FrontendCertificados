@@ -1,22 +1,25 @@
-.contenedor {
-    position: relative; /* Establece un contexto relativo */
-    width: 300px; /* Ajusta el ancho según tu necesidad */
-  }
-  
-  .texto-encima {
-    position: absolute; /* Posiciona el texto de forma absoluta dentro del contenedor */
-    top: 50%; /* Ajusta la posición vertical */
-    left: 50%; /* Ajusta la posición horizontal */
-    transform: translate(-50%, -50%); /* Centra el texto respecto al centro del contenedor */
-    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semi-transparente */
-    color: white; /* Color del texto */
-    padding: 10px; /* Espacio interior */
-    z-index: 1; /* Asegura que el texto esté encima de la imagen */
-  }
-  
-  img {
-    display: block; /* Asegura que la imagen se comporte como bloque */
-    width: 100%; /* Opcional: Ajusta el ancho al 100% */
-    height: auto; /* Opcional: Ajusta la altura automáticamente */
-  }
-  
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Asegúrate de que el contenedor padre tenga altura definida */
+.container {
+  height: 1404px; /* Ajusta la altura según tus necesidades */
+  width: 100%; /* Asegúrate de que el contenedor ocupe el ancho completo */
+}
+
+.cert1 {
+  background-image: url(../../img/cert2/page2.png);
+  background-size: cover; /* Ajusta el tamaño de la imagen de fondo */
+  width: 1000px; /* Asegúrate de que el elemento ocupe el ancho completo del contenedor */
+  height: 702px; /* Asegúrate de que el elemento ocupe el alto completo del contenedor */
+
+}
+
+.cert2 {
+  background-image: url(../../img/cert2/page1.png);
+  background-size: cover; /* Ajusta el tamaño de la imagen de fondo */
+  width: 1000px; /* Asegúrate de que el elemento ocupe el ancho completo del contenedor */
+  height: 702px; /* Asegúrate de que el elemento ocupe el alto completo del contenedor */
+}

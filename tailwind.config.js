@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'certificado': "url('./img/cert1.jpg')",
+        'certificado': "./img/cert2/page1.png",
       }
     },
   },
