@@ -8,26 +8,42 @@ const Certificados = () => {
     const [idAlumno, setIdAlumno] = useState(1);
     const [certificados, setCertificados] = useState([]);
 
+    const APP_STATUS = {
+        IDLE: 'idle',
+        ERROR: 'error',
+        READY_ID: 'ready_id',
+        UPLOADING: 'uploading',
+        READY_USAGE: 'ready_usage',
+    };
+    const [appStatus, setAppStatus] = useState(APP_STATUS.IDLE);
+    console.log(appStatus)
     useEffect(() => {
         const decodedData = JSON.parse(decodeURIComponent(data));
         setIdAlumno(decodedData);
+        setAppStatus(APP_STATUS.READY_ID);
     }, [data]);
 
     const { response, loading, error } = useMethodPostClave(`http://localhost:3000/certificado/alumno/${idAlumno}`);
 
     useEffect(() => {
+        setAppStatus(APP_STATUS.UPLOADING)
         if (response && response.certificado) {
             setCertificados(response.certificado);
         }
+        setAppStatus(APP_STATUS.READY_USAGE)
     }, [response])
 
     useEffect(() => {
         if (error) {
+            setAppStatus(APP_STATUS.ERROR)
             toast.error("Error: " + error.response.data.details[0].msg);
         }
     }, [error]);
-    
+
     if (loading) return <p>Cargando...</p>;
+
+    const showCertificate = appStatus === APP_STATUS.READY_USAGE;
+
     return (
         <>
             <Toaster />
@@ -47,11 +63,14 @@ const Certificados = () => {
                             <td>{certificado.nombre_seminario}</td>
                             <td>{`${certificado.nombre_instructor} ${certificado.apellido_p_instructor} ${certificado.apellido_m_instructor}`}</td>
                             <td>{certificado.descripcion_contenido}</td>
+                            {Certificado("JosueRenato")}
                         </tr>
                     ))}
                 </tbody>
             </table>
-            {Certificado(response)}
+            {
+
+            }
         </>
     );
 };

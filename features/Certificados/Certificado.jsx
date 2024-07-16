@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import "./cert1Style.css"
-const Certificado = (response) => {
-
-
-    const nombreApellidos = "JSABDKASD";
+const Certificado = (nombreApellidos) => {
     const modalidad = "Virtual";
     const titulo = '"Diseño de camaras de refrigeracion con sistemas por freon "';
     const ciudad = "Lima";
