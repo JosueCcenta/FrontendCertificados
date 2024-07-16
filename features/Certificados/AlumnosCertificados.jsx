@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useMethodPostClave } from "../../services/postClaveHTTP";
 import { Toaster, toast } from "sonner";
-
+import Certificado from "./Certificado";
 const Certificados = () => {
     const { data } = useParams();
     const [idAlumno, setIdAlumno] = useState(1);
@@ -26,7 +26,7 @@ const Certificados = () => {
             toast.error("Error: " + error.response.data.details[0].msg);
         }
     }, [error]);
-
+    
     if (loading) return <p>Cargando...</p>;
     return (
         <>
@@ -51,6 +51,7 @@ const Certificados = () => {
                     ))}
                 </tbody>
             </table>
+            {Certificado(response)}
         </>
     );
 };

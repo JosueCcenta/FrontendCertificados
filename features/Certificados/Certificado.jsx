@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import "./cert1Style.css"
-const Certificado = () => {
-    const nombreApellidos = "Andres Axel Ajalcriña Robles";
+const Certificado = (response) => {
+
+
+    const nombreApellidos = "JSABDKASD";
     const modalidad = "Virtual";
     const titulo = '"Diseño de camaras de refrigeracion con sistemas por freon "';
     const ciudad = "Lima";
@@ -20,11 +23,14 @@ const Certificado = () => {
         { clave: "5)Calculo de tuberias de refrigeracion y seleccion de accesorios de refrigeracion" },
         { clave: "6)Calculo de presiones de trabajo, cantidad de refrigerante, aceite para puesto en marcha" },
         { clave: "7)Casos practicos como calculo de carga terminca y seleccion de  camara de conservacion de frescos,congelado y tunel de congelamiento  y tunel de enfriamiento rapido." },
-
     ];
+
+
+
     return (
         <>
             <div className="container">
+
                 <div className="cert1 flex flex-col items-center justify-center text-center" >
                     <div className="informacion mt-28">
                         <h1 className="font-serif font-bold text-5xl">CERTIFICADO</h1>
@@ -69,7 +75,7 @@ const Certificado = () => {
                         </div>
                         <div className="contenido text-left w-10/12">
                             <p className="mt-10 mb-4 font-bold">El contenido tematico del curso comprende:</p>
-                            {contenidoCurso.map((x,index) => (
+                            {contenidoCurso.map((x, index) => (
                                 <p key={index}>{x.clave}</p>
                             ))}
                         </div>

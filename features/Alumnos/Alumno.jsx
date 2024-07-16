@@ -17,7 +17,7 @@ const Alumnos = () => {
         if (searchTerm !== "") {
             search(searchTerm);
         } else {
-            setRespuesta(null); 
+            setRespuesta(null);
         }
     }, [searchTerm]);
 
@@ -25,13 +25,12 @@ const Alumnos = () => {
     const renderTable = () => {
         if (!respuesta) {
             return (
-                <tbody>
+                <tbody className="">
                     {data.map((alumno) => (
                         <tr key={alumno.id_alumno}>
                             <td>{alumno.id_alumno}</td>
                             <td>{alumno.nombres}</td>
-                            <td>{alumno.apellido_p}</td>
-                            <td>{alumno.apellido_m}</td>
+                            <td>{alumno.apellido_p} {alumno.apellido_m}</td>
                             <td>{alumno.dni}</td>
                             <td>{alumno.email}</td>
                             <td>{alumno.id_tipo_usuario}</td>
@@ -48,8 +47,7 @@ const Alumnos = () => {
                     {respuesta.map((alumno) => (
                         <tr key={alumno.id_alumno}>
                             <td>{alumno.id_alumno}</td>
-                            <td>{alumno.nombres}</td>
-                            <td>{alumno.apellido_p}</td>
+                            <td>{alumno.nombres+alumno.apellido_p}</td>
                             <td>{alumno.apellido_m}</td>
                             <td>{alumno.dni}</td>
                             <td>{alumno.email}</td>
@@ -69,31 +67,32 @@ const Alumnos = () => {
 
     return (
         <>
-            <div className="search flex flex-row items-center">
-                <input
-                    className="border-2 border-blue-300 w-11/12"
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search..."
-                />
-                <button onClick={() => search(searchTerm)}>Buscar</button>
+            <div className="container font-sans text-sm">
+                <div className="search flex flex-row items-center">
+                    <input
+                        className="border-2 border-blue-300 w-11/12"
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search..."
+                    />
+                    <button onClick={() => search(searchTerm)}>Buscar</button>
+                </div>
+                <table className="w-full">
+                    <thead className="border-2 border-black rounded-tl-2xl rounded-tr-5%">
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>DNI</th>
+                            <th>Correo</th>
+                            <th>Tipo usuario</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    {renderTable()}
+                </table>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Nombres</th>
-                        <th>Apellido paterno</th>
-                        <th>Apellido Materno</th>
-                        <th>DNI</th>
-                        <th>Correo</th>
-                        <th>Tipo usuario</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                {renderTable()}
-            </table>
         </>
     );
 };
