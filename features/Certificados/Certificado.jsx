@@ -1,17 +1,27 @@
 import "./cert1Style.css"
 const Certificado = () => {
-    const nombreApellidos = "Josue Renato Ccenta Sullon";
-    const modalidad = "";
-    const titulo = '"AIRE ACONDICIONADO "';
+    const nombreApellidos = "Andres Axel Ajalcriña Robles";
+    const modalidad = "Virtual";
+    const titulo = '"Diseño de camaras de refrigeracion con sistemas por freon "';
     const ciudad = "Lima";
-    const fecha_inicio = "23 junio";
-    const fecha_termino = "28 agosto";
+    const fecha_inicio = "31 mayo";
+    const fecha_termino = "05 julio";
     const año = "2024";
-    const horas_totales = 3;
+    const horas_totales = "30";
     const ins1 = "Ing. Luis Alberto Perez Peves";
     const cargoIns1 = "Coordinador Academico";
-    const ins2 = "Ing. Rony Montoya Campos";
+    const ins2 = "Ing. Gabriel Alonso Garcia Leon";
     const cargoIns2 = "Instructor";
+    const contenidoCurso = [
+        { clave: "1)Principios basicos de la termodinamica aplicado a la refrigeracion  y sistemas basicos de la refrigeracion" },
+        { clave: "2)Parametros de diseño y dimensionamiento de cuartos frios, arquitectura de cuartos frios" },
+        { clave: "3)Principales ganancias de calor y estimacion de carga termica" },
+        { clave: "4)seleccion de equipos de refrigeracion" },
+        { clave: "5)Calculo de tuberias de refrigeracion y seleccion de accesorios de refrigeracion" },
+        { clave: "6)Calculo de presiones de trabajo, cantidad de refrigerante, aceite para puesto en marcha" },
+        { clave: "7)Casos practicos como calculo de carga terminca y seleccion de  camara de conservacion de frescos,congelado y tunel de congelamiento  y tunel de enfriamiento rapido." },
+
+    ];
     return (
         <>
             <div className="container">
@@ -40,11 +50,33 @@ const Certificado = () => {
                         </div>
                     </div>
                 </div>
-                <div className="cert2">
-
+                <div className="cert2  flex flex-col items-center justify-center text-center">
+                    <div className="container h-4/5 w-11/12 mt-32 flex flex-col items-center  text-center">
+                        <p className="font-semibold text-3xl mx-10">{titulo}</p>
+                        <div className="dateTime p-4 ">
+                            <div className="fechaInicio flex flex-row gap-2 items-center justify-center text-center">
+                                <p>fecha de inicio:</p>
+                                <p>{fecha_inicio + año}</p>
+                            </div>
+                            <div className="fechaFinal flex flex-row gap-2">
+                                <p>fecha de finalizacion:</p>
+                                <p>{fecha_termino + año}</p>
+                            </div>
+                        </div>
+                        <div className="flex flex-column gap-0 border-2 border-black w-2/5">
+                            <p className=" w-full border-2 border-black font-bold">TOTAL DE HORAS: </p>
+                            <p className=" w-full border-2 border-black font-bold">{horas_totales} HORAS</p>
+                        </div>
+                        <div className="contenido text-left w-10/12">
+                            <p className="mt-10 mb-4 font-bold">El contenido tematico del curso comprende:</p>
+                            {contenidoCurso.map((x,index) => (
+                                <p key={index}>{x.clave}</p>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
-            </>
-            )
+        </>
+    )
 }
-            export default Certificado
+export default Certificado

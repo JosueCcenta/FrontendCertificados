@@ -3,23 +3,23 @@
   padding: 0;
 }
 
-/* Asegúrate de que el contenedor padre tenga altura definida */
+
 .container {
-  height: 1404px; /* Ajusta la altura según tus necesidades */
-  width: 100%; /* Asegúrate de que el contenedor ocupe el ancho completo */
+  height: 1404px; 
+  width: 100%;
 }
 
 .cert1 {
   background-image: url(../../img/cert2/page2.png);
-  background-size: cover; /* Ajusta el tamaño de la imagen de fondo */
-  width: 1000px; /* Asegúrate de que el elemento ocupe el ancho completo del contenedor */
-  height: 702px; /* Asegúrate de que el elemento ocupe el alto completo del contenedor */
+  background-size: cover; 
+  width: 1000px; 
+  height: 702px; 
 
 }
 
 .cert2 {
   background-image: url(../../img/cert2/page1.png);
-  background-size: cover; /* Ajusta el tamaño de la imagen de fondo */
-  width: 1000px; /* Asegúrate de que el elemento ocupe el ancho completo del contenedor */
-  height: 702px; /* Asegúrate de que el elemento ocupe el alto completo del contenedor */
+  background-size: cover; 
+  width: 1000px; 
+  height: 702px; 
 }
