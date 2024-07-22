@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useMethodPostClave } from "../../services/postClaveHTTP";
 import { Toaster, toast } from "sonner";
 import Certificado from "./Certificado";
+
 const Certificados = () => {
     const { data } = useParams();
     const [idAlumno, setIdAlumno] = useState(1);
@@ -16,7 +17,7 @@ const Certificados = () => {
         READY_USAGE: 'ready_usage',
     };
     const [appStatus, setAppStatus] = useState(APP_STATUS.IDLE);
-    console.log(appStatus)
+    
     useEffect(() => {
         const decodedData = JSON.parse(decodeURIComponent(data));
         setIdAlumno(decodedData);
@@ -24,7 +25,7 @@ const Certificados = () => {
     }, [data]);
 
     const { response, loading, error } = useMethodPostClave(`http://localhost:3000/certificado/alumno/${idAlumno}`);
-
+    
     useEffect(() => {
         setAppStatus(APP_STATUS.UPLOADING)
         if (response && response.certificado) {
@@ -42,35 +43,21 @@ const Certificados = () => {
 
     if (loading) return <p>Cargando...</p>;
 
-    const showCertificate = appStatus === APP_STATUS.READY_USAGE;
+
 
     return (
         <>
             <Toaster />
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID Certificado</th>
-                        <th>Seminario</th>
-                        <th>Instructor</th>
-                        <th>Contenido</th>
-                    </tr>
-                </thead>
-                <tbody>
+            
                     {certificados.map(certificado => (
                         <tr key={certificado.id_certificado}>
+                            {Certificado(certificado)}
                             <td>{certificado.id_certificado}</td>
                             <td>{certificado.nombre_seminario}</td>
                             <td>{`${certificado.nombre_instructor} ${certificado.apellido_p_instructor} ${certificado.apellido_m_instructor}`}</td>
                             <td>{certificado.descripcion_contenido}</td>
-                            {Certificado("JosueRenato")}
                         </tr>
                     ))}
-                </tbody>
-            </table>
-            {
-
-            }
         </>
     );
 };

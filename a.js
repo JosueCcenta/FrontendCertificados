@@ -226,4 +226,67 @@ const Certificados = () => {
     );
 };
 
-export default Certificados;
+
+const ALUMNO = () => {
+    const create = true; CHECK
+    const update = true; CHECK
+    const getfilter = true; CHECK
+    const busqueda = true; CHECK
+    const getPersonalizados = false; 
+    const getbyid   = true; CHECK
+}
+
+const CargoInstructor = () => {
+    const create = true; CHECK
+    const update = true; CHECK
+    const getfilter = false;
+    const busqueda = true; CHECK
+    const getPersonalizados = true; CHECK("trae todos los cargos")
+    const getbyid  = true; CHECK
+}
+
+const Certificado = () => {
+    const create = true; CHECK
+    const getfilter = true;
+    const busqueda = false;
+    const getPersonalizados = true;  CHECK("update certificadoQR").CHECK("tener el qr por el id del certificado").CHECK("traer certificado por id alumno")
+    const getbyid  = true; CHECK
+}
+
+const Contenido_Seminario = () => {
+    const create = true;
+    const update = false;
+    const getfilter = false;
+    const busqueda = false;
+    const getPersonalizados = true; 
+    const getbyid  = false;
+}
+
+const Instructor = () => {
+    const create = true; CHECK("Falta hacer un filtro pór si entran hermanos a trabajar")
+    const update = false; CHECK
+    const getfilter = false;
+    const busqueda = false;
+    const getPersonalizados = true; CHECK("Actualiza la firma del instructor") 
+    const getbyid  = false;
+}
+
+const Seminario = () => {
+    const create = true;
+    const update = false;
+    const getfilter = false;
+    const busqueda = false;
+    const getPersonalizados = false; 
+    const getbyid  = false;
+}
+
+const Usuarios = () => {
+    const create = true; CHECK
+    const update = true; CHECK
+    const getfilter = true; CHECK
+    const busqueda = true; CHECK
+    const getPersonalizados = false; 
+    const getbyid  = true; CHECK
+}
+
+

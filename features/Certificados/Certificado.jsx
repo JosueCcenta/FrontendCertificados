@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import "./cert1Style.css"
-const Certificado = (nombreApellidos) => {
-    const modalidad = "Virtual";
-    const titulo = '"Diseño de camaras de refrigeracion con sistemas por freon "';
-    const ciudad = "Lima";
+const Certificado = (nombreApellidos, modalidad, titulo, ciudad, fecha_inicio, fecha_termino, año, horas_totales, ins1, cargoIns1, ins2, cargoIns2, contenidoCurso) => {
+
+    /**nombreApellidos
+     * modalidad
+     * titulo
+     *    const ciudad = "Lima"; falta 
     const fecha_inicio = "31 mayo";
     const fecha_termino = "05 julio";
     const año = "2024";
     const horas_totales = "30";
     const ins1 = "Ing. Luis Alberto Perez Peves";
     const cargoIns1 = "Coordinador Academico";
-    const ins2 = "Ing. Gabriel Alonso Garcia Leon";
-    const cargoIns2 = "Instructor";
+    const ins2 = "Ing. Gabriel Alonso Garcia Leon"; falta 
+    const cargoIns2 = "Instructor"; falta
     const contenidoCurso = [
         { clave: "1)Principios basicos de la termodinamica aplicado a la refrigeracion  y sistemas basicos de la refrigeracion" },
         { clave: "2)Parametros de diseño y dimensionamiento de cuartos frios, arquitectura de cuartos frios" },
@@ -21,8 +23,8 @@ const Certificado = (nombreApellidos) => {
         { clave: "6)Calculo de presiones de trabajo, cantidad de refrigerante, aceite para puesto en marcha" },
         { clave: "7)Casos practicos como calculo de carga terminca y seleccion de  camara de conservacion de frescos,congelado y tunel de congelamiento  y tunel de enfriamiento rapido." },
     ];
-
-
+     * 
+     */
 
     return (
         <>
@@ -72,9 +74,7 @@ const Certificado = (nombreApellidos) => {
                         </div>
                         <div className="contenido text-left w-10/12">
                             <p className="mt-10 mb-4 font-bold">El contenido tematico del curso comprende:</p>
-                            {contenidoCurso.map((x, index) => (
-                                <p key={index}>{x.clave}</p>
-                            ))}
+                         
                         </div>
                     </div>
                 </div>
