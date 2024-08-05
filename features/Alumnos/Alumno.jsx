@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useMethodGet } from "../../services/getHTTP";
-import { useMethodPostClave } from "../../services/postClaveHTTP";
+import { usePost } from "../../services/usePost";
 import { Link } from 'react-router-dom';
-
+import Loading from "../Layouts/Loading";
 const Alumnos = () => {
     const { data, loading, error } = useMethodGet('http://localhost:3000/alumnos');
     const [searchTerm, setSearchTerm] = useState("");
@@ -10,7 +10,7 @@ const Alumnos = () => {
 
     const search = async (palabraClave) => {
         setSearchTerm(palabraClave);
-        const { response, loading, error } = await useMethodPostClave("http://localhost:3000/alumno/search/", "", palabraClave);
+        const { response, loading, error } = await usePost("http://localhost:3000/alumno/search/", "", palabraClave);
         setRespuesta(response);
     };
     useEffect(() => {
@@ -62,7 +62,7 @@ const Alumnos = () => {
         }
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loading/> ;
     if (error) return <p>Error: {error.message}</p>;
 
     return (

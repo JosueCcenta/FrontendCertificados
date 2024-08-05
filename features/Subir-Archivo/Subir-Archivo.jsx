@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { uploadFile } from "../../services/uploadFile";
 import { Toaster, toast } from "sonner";
-import { useMethodPostClave } from "../../services/postClaveHTTP";
+import { usePost } from "../../services/usePost";
 
 const APP_STATUS = {
     IDLE: 'idle',
@@ -64,7 +64,7 @@ const SubirArchivo = () => {
         }
     }, [informacion]);
 
-    const { fetchData, response, loading, error } = useMethodPostClave();
+    const { fetchData, response, loading, error } = usePost();
 
     useEffect(() => {
         const fetchDataIfNeeded = async () => {

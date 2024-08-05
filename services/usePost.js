@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const useMethodPostClave = (url, postData) => {
+export const usePost = (url, postData) => {
     const [response, setResponse] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -9,7 +9,7 @@ export const useMethodPostClave = (url, postData) => {
     useEffect(() => {
         try {
             const resultado = axios.post(url, postData);
-            setResponse(resultado.data);
+            setResponse(resultado);
         } catch (err) {
             setError(err);
         } finally {

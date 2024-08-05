@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useMethodPostClave } from "../../services/postClaveHTTP";
+import { usePost } from "../../services/usePost";
 import { Toaster, toast } from "sonner";
 import Certificado from "./Certificado";
 
@@ -24,7 +24,7 @@ const Certificados = () => {
         setAppStatus(APP_STATUS.READY_ID);
     }, [data]);
 
-    const { response, loading, error } = useMethodPostClave(`http://localhost:3000/certificado/alumno/${idAlumno}`);
+    const { response, loading, error } = usePost(`http://localhost:3000/certificado/alumno/${idAlumno}`);
     
     useEffect(() => {
         setAppStatus(APP_STATUS.UPLOADING)
@@ -41,7 +41,7 @@ const Certificados = () => {
         }
     }, [error]);
 
-    if (loading) return <p>Cargando...</p>;
+    if (loading) return <p>Cargando... hola</p>;
 
 
 
