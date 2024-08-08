@@ -102,12 +102,13 @@ const SubirArchivo = () => {
     const showButtonBd = appStatus === APP_STATUS.READY_SUBMIT_BD;
 
     return (
+
         <>
             <Toaster />
-            <h4>Subir el archivo CSV</h4>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <input
+            <div className="main flex flex-column justify-center items-center mt-8">
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        className="bg-sky-300"
                         disabled={appStatus === APP_STATUS.UPLOADING}
                         onChange={handleInputChange}
                         name="file"
@@ -115,13 +116,15 @@ const SubirArchivo = () => {
                         required
                         accept=".csv"
                     />
-                </label>
-                {showButton && (
-                    <button disabled={appStatus === APP_STATUS.UPLOADING}>
-                        {BUTTON_TEXT[appStatus]}
-                    </button>
-                )}
-            </form>
+                    {showButton && (
+                        <button disabled={appStatus === APP_STATUS.UPLOADING}>
+                            {BUTTON_TEXT[appStatus]}
+                        </button>
+                    )}
+                </form>
+            </div>
+
+
         </>
     );
 };

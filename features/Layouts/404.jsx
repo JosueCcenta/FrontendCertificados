@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import notFoundImage from "../../source/img/404.svg";
+import notFoundImage from "../../img/404/404img.png";
 
 const Page404 = () => {
     return (
         <div className="bg-white dark:bg-gray-900">
-            <div className="container mx-auto lg:flex lg:items-center">
+            <div className="main mx-auto lg:flex lg:items-center">
                 <div className="w-full lg:w-1/2">
                     <p className="text-sm font-medium text-blue-500 dark:text-blue-400">
                         404 error
@@ -20,7 +20,7 @@ const Page404 = () => {
 
                     <div className="flex items-center mt-6 gap-x-3">
                         <Link
-                            to="/"
+                            to="/cert/login "
                             className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700"
                         >
                             <svg

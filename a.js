@@ -290,3 +290,21 @@ const Usuarios = () => {
 }
 
 
+<Toaster />
+<div className="container ">
+    <form onSubmit={handleSubmit}>
+            <input
+                disabled={appStatus === APP_STATUS.UPLOADING}
+                onChange={handleInputChange}
+                name="file"
+                type="file"
+                required
+                accept=".csv"
+            />
+        {showButton && (
+            <button disabled={appStatus === APP_STATUS.UPLOADING}>
+                {BUTTON_TEXT[appStatus]}
+            </button>
+        )}
+    </form>
+</div>
